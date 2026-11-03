@@ -1,0 +1,20 @@
+
+/* ---------- live-site additions ---------- */
+.skip{position:absolute;left:-9999px;top:0;background:var(--honey);color:#2a2410;padding:.6rem 1rem;z-index:100;font-weight:800}
+.skip:focus{left:1rem;top:1rem}
+.brand .wm{color:var(--pine-text)}
+.site-f .brand{color:var(--on-band)}
+.price-note{font-size:.8rem;font-weight:700;color:var(--pine-text)}
+.lede-sm{font-size:1.05rem;color:var(--muted)}
+.desc{max-width:72ch;display:grid;gap:.7rem;padding-bottom:1rem}
+.desc h3{font-size:1.25rem;color:var(--pine-text);margin-top:.8rem}
+.desc ul{margin:0;padding-left:1.2rem;display:grid;gap:.2rem}
+.desc p{color:var(--ink)}
+.assure a{color:var(--pine-text)}
+.muted-sm{font-size:.9rem;color:var(--muted)}
+.prose ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+.mail-inline{font-family:ui-monospace,Menlo,monospace;user-select:all}
+.thumbs:empty{display:none}
+.occ a{gap:.4rem}
+td a{color:var(--ink)}
+@media(max-width:560px){.grid{grid-template-columns:1fr 1fr;gap:.7rem}.card .bd{padding:.65rem .7rem .8rem;gap:.3rem}.card h3{font-size:.98rem}.card .meta{font-size:.78rem}.card .row{margin-top:.1rem}.price-note{display:none}.tag{font-size:.6rem}}
