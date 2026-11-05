@@ -37,7 +37,7 @@ HUBS = {
         chips=[("all", "All"), ("adults", "For adults"), ("family", "Family"), ("kids", "Kids"), ("office", "Office party"), ("bundle", "Bundles")]),
     "party": dict(path="party-games", nav="Party games", h1="Printable Party Games",
         title="Printable Party Games for New Year, Valentine's, Showers & Hen Dos",
-        lede="Games for the parties that come after Christmas: New Year's Eve, Valentine's and Galentine's, Easter, baby showers, bridal showers and hen dos.",
+        lede="Games for every party after Christmas: date nights for two, a family escape room, New Year's Eve, Valentine's and Galentine's, Easter, baby showers, bridal showers and hen dos.",
         meta="Printable party games for New Year's Eve, Valentine's, Easter, baby showers, bridal showers and hen parties. Instant download in A4 and US Letter."),
     "planners": dict(path="planners", nav="Planners", h1="Printable Planners & Organisers",
         title="Printable Planners: Budget, ADHD, Chore Charts & Drone Logbook",
@@ -121,6 +121,7 @@ def crumbs(items):
 
 
 def card(p, tag=None):
+    tag = tag or p.get("tag")
     t = f'<span class="tag">{e(tag)}</span>' if tag else ""
     return (f'<article class="card" data-f="{" ".join(p.get("filters", []))}"><div class="ph">'
             f'<a href="/p/{p["slug"]}/" tabindex="-1" aria-hidden="true"><img src="/img/p/{p["slug"]}-1.jpg" alt="{e(p["name"])} printable" loading="lazy" width="900" height="900"></a>{t}</div>'
@@ -153,7 +154,7 @@ def desc_html(text):
         if ul:
             out.append("</ul>"); ul = False
         letters = re.sub(r"[^A-Za-z]", "", s)
-        if letters and sum(c.isupper() for c in letters) / len(letters) > 0.7 and len(s) < 70:
+        if letters and sum(c.isupper() for c in letters) / len(letters) > 0.6 and len(s) < 70:
             clean = re.sub(r"^[^A-Za-z0-9]+", "", s).strip()
             words = clean.lower().split()
             words = [w.upper() if w.strip("()&,:").upper() in KEEP_UPPER else w for w in words]
@@ -220,6 +221,8 @@ def build_home():
       <a href="/christmas-games/"><b>Christmas games</b><span>Quizzes, bingo, charades, hunts</span><span class="when">Now – 25 Dec</span></a>
       <a href="/p/new-years-eve-games/"><b>New Year's Eve</b><span>Games for the countdown</span><span class="when">31 Dec</span></a>
       <a href="/p/valentines-games/"><b>Valentine's &amp; Galentine's</b><span>Couples quiz, party games</span><span class="when">14 Feb</span></a>
+      <a href="/p/date-night-murder-mystery/"><b>Date night for two</b><span>Murder mystery and couples games</span><span class="when">New</span></a>
+      <a href="/p/escape-room-kids/"><b>Family escape room</b><span>Puzzles for ages 8+</span><span class="when">New</span></a>
       <a href="/party-games/"><b>Showers &amp; hen dos</b><span>Baby shower, bridal shower, hen party</span><span class="when">All year</span></a>
       <a href="/planners/"><b>Planners</b><span>Budget, ADHD-friendly, chore charts</span><span class="when">New year, new plan</span></a>
       <a href="/p/drone-pilot-logbook/"><b>Drone pilots</b><span>Logbook + flight tracker spreadsheet</span><span class="when">UK, EU &amp; US</span></a>
