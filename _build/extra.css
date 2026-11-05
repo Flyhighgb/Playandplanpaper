@@ -20,3 +20,5 @@ td a{color:var(--ink)}
 @media(max-width:560px){.grid{grid-template-columns:1fr 1fr;gap:.7rem}.card .bd{padding:.65rem .7rem .8rem;gap:.3rem}.card h3{font-size:.98rem}.card .meta{font-size:.78rem}.card .row{margin-top:.1rem}.price-note{display:none}.tag{font-size:.6rem}}
 .occ{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}@media(max-width:560px){.occ{grid-template-columns:1fr 1fr}}
 .tag{top:auto;bottom:.6rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.grid-3{grid-template-columns:1fr}.grid-3 .card{grid-template-columns:130px 1fr;grid-template-rows:auto}.grid-3 .card .ph{aspect-ratio:1}.grid-3 .card .bd{align-content:center}}

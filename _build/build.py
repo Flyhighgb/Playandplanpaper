@@ -214,6 +214,12 @@ def build_home():
   </div>
 </section>
 <div class="ribbon"><div class="wrap"><span><span class="num" id="days">–</span> days until Christmas</span><span>Nothing to post, nothing to wait for.</span><a href="/p/ultimate-christmas-games-bundle/">See the Ultimate Bundle →</a></div></div>
+<section style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Date nights for two and a puzzle adventure for the whole family.</p></div>
+    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["date-night-murder-mystery", "couples-game-bundle", "escape-room-kids"])}</div>
+  </div>
+</section>
 <section>
   <div class="wrap">
     <div class="sec-head"><div class="stack"><p class="eyebrow">Shop by occasion</p><h2>What are you planning?</h2></div><p>Find games and planners for every part of the year.</p></div>
