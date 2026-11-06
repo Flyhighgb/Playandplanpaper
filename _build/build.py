@@ -216,8 +216,8 @@ def build_home():
 <div class="ribbon"><div class="wrap"><span><span class="num" id="days">–</span> days until Christmas</span><span>Nothing to post, nothing to wait for.</span><a href="/p/ultimate-christmas-games-bundle/">See the Ultimate Bundle →</a></div></div>
 <section style="padding-bottom:0">
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Secret Santa sorted, a magical Christmas Eve box, and a budget for the new year.</p></div>
-    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["secret-santa-kit", "christmas-eve-box-kit", "uk-budget-spreadsheet"])}</div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Christmas emoji games, a kids' escape room to save Santa's sleigh, and a low-overwhelm cleaning planner.</p></div>
+    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["christmas-emoji-games", "christmas-escape-room", "adhd-cleaning-planner"])}</div>
   </div>
 </section>
 <section>
@@ -230,9 +230,10 @@ def build_home():
       <a href="/p/secret-santa-kit/"><b>Secret Santa</b><span>Questionnaires, name draw, swap games</span><span class="when">Now – Dec</span></a>
       <a href="/p/christmas-eve-box-kit/"><b>Christmas Eve box</b><span>Magic key, labels, tickets</span><span class="when">24 Dec</span></a>
       <a href="/p/date-night-murder-mystery/"><b>Date night for two</b><span>Murder mystery and couples games</span><span class="when">14 Feb</span></a>
+      <a href="/p/christmas-escape-room/"><b>Christmas escape room</b><span>Save Santa's sleigh, ages 6+</span><span class="when">Now – 25 Dec</span></a>
       <a href="/p/escape-room-kids/"><b>Family escape room</b><span>Puzzles for ages 8+</span><span class="when">All year</span></a>
       <a href="/party-games/"><b>Showers &amp; hen dos</b><span>Baby shower, bridal shower, hen party</span><span class="when">All year</span></a>
-      <a href="/planners/"><b>Planners</b><span>UK budget spreadsheet, ADHD-friendly, chore charts</span><span class="when">New year, new plan</span></a>
+      <a href="/planners/"><b>Planners</b><span>ADHD cleaning, UK budget spreadsheet, chore charts</span><span class="when">New year, new plan</span></a>
       <a href="/p/drone-pilot-logbook/"><b>Drone pilots</b><span>Logbook + flight tracker spreadsheet</span><span class="when">UK, EU &amp; US</span></a>
     </div>
   </div>
