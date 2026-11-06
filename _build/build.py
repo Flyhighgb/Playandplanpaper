@@ -41,8 +41,8 @@ HUBS = {
         meta="Printable party games for New Year's Eve, Valentine's, Easter, baby showers, bridal showers and hen parties. Instant download in A4 and US Letter."),
     "planners": dict(path="planners", nav="Planners", h1="Printable Planners & Organisers",
         title="Printable Planners: Budget, ADHD, Chore Charts & Drone Logbook",
-        lede="Calm, simple pages that make home life easier: an undated budget planner, an ADHD-friendly planner, chore charts for kids, a Christmas planner and a drone pilot logbook.",
-        meta="Printable planners and organisers: undated budget planner, ADHD-friendly planner, chore and reward charts, Christmas planner and drone pilot logbook."),
+        lede="Calm, simple pages that make home life easier: a UK budget spreadsheet for Google Sheets and Excel, an undated budget planner, an ADHD-friendly planner, chore charts for kids, a Christmas planner and a drone pilot logbook.",
+        meta="Printable planners and organisers: UK budget spreadsheet, undated budget planner, ADHD-friendly planner, chore and reward charts, Christmas planner and drone pilot logbook."),
 }
 
 CSS_VER = "1"
@@ -216,8 +216,8 @@ def build_home():
 <div class="ribbon"><div class="wrap"><span><span class="num" id="days">–</span> days until Christmas</span><span>Nothing to post, nothing to wait for.</span><a href="/p/ultimate-christmas-games-bundle/">See the Ultimate Bundle →</a></div></div>
 <section style="padding-bottom:0">
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Date nights for two and a puzzle adventure for the whole family.</p></div>
-    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["date-night-murder-mystery", "couples-game-bundle", "escape-room-kids"])}</div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Secret Santa sorted, a magical Christmas Eve box, and a budget for the new year.</p></div>
+    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["secret-santa-kit", "christmas-eve-box-kit", "uk-budget-spreadsheet"])}</div>
   </div>
 </section>
 <section>
@@ -227,10 +227,12 @@ def build_home():
       <a href="/christmas-games/"><b>Christmas games</b><span>Quizzes, bingo, charades, hunts</span><span class="when">Now – 25 Dec</span></a>
       <a href="/p/new-years-eve-games/"><b>New Year's Eve</b><span>Games for the countdown</span><span class="when">31 Dec</span></a>
       <a href="/p/valentines-games/"><b>Valentine's &amp; Galentine's</b><span>Couples quiz, party games</span><span class="when">14 Feb</span></a>
-      <a href="/p/date-night-murder-mystery/"><b>Date night for two</b><span>Murder mystery and couples games</span><span class="when">New</span></a>
-      <a href="/p/escape-room-kids/"><b>Family escape room</b><span>Puzzles for ages 8+</span><span class="when">New</span></a>
+      <a href="/p/secret-santa-kit/"><b>Secret Santa</b><span>Questionnaires, name draw, swap games</span><span class="when">Now – Dec</span></a>
+      <a href="/p/christmas-eve-box-kit/"><b>Christmas Eve box</b><span>Magic key, labels, tickets</span><span class="when">24 Dec</span></a>
+      <a href="/p/date-night-murder-mystery/"><b>Date night for two</b><span>Murder mystery and couples games</span><span class="when">14 Feb</span></a>
+      <a href="/p/escape-room-kids/"><b>Family escape room</b><span>Puzzles for ages 8+</span><span class="when">All year</span></a>
       <a href="/party-games/"><b>Showers &amp; hen dos</b><span>Baby shower, bridal shower, hen party</span><span class="when">All year</span></a>
-      <a href="/planners/"><b>Planners</b><span>Budget, ADHD-friendly, chore charts</span><span class="when">New year, new plan</span></a>
+      <a href="/planners/"><b>Planners</b><span>UK budget spreadsheet, ADHD-friendly, chore charts</span><span class="when">New year, new plan</span></a>
       <a href="/p/drone-pilot-logbook/"><b>Drone pilots</b><span>Logbook + flight tracker spreadsheet</span><span class="when">UK, EU &amp; US</span></a>
     </div>
   </div>
@@ -362,12 +364,12 @@ def build_product(p):
       <div class="thumbs">{thumbs}</div>
     </div>
     <div class="buybox">
-      <p class="eyebrow">{e(hub['nav'])} · printable PDF</p>
+      <p class="eyebrow">{e(hub['nav'])} · {e(p.get('kind', 'printable PDF'))}</p>
       <h1>{e(p['name'])}</h1>
       <p class="lede-sm">{e(first_para)}</p>
       <a class="btn btn-pri" href="{p['etsy']}" rel="noopener">See price &amp; buy on Etsy</a>
-      <dl class="spec"><dt>Format</dt><dd>{e(p.get("format", "Digital PDF download"))}</dd><dt>Sizes</dt><dd>{e(p.get("sizes", "A4 and US Letter"))}</dd><dt>Versions</dt><dd>Full colour + ink-saver</dd><dt>Delivery</dt><dd>Instant, straight after checkout</dd></dl>
-      <p class="assure">Secure checkout through Etsy. Print as many copies as you need for your own household.</p>
+      <dl class="spec"><dt>Format</dt><dd>{e(p.get("format", "Digital PDF download"))}</dd><dt>Sizes</dt><dd>{e(p.get("sizes", "A4 and US Letter"))}</dd><dt>Versions</dt><dd>{e(p.get("versions", "Full colour + ink-saver"))}</dd><dt>Delivery</dt><dd>Instant, straight after checkout</dd></dl>
+      <p class="assure">{e(p.get("assure", "Secure checkout through Etsy. Print as many copies as you need for your own household."))}</p>
     </div>
   </div>
   <div class="desc">{desc_html(p['description'].split(chr(10), 1)[1] if chr(10) in p['description'] else '')}</div>
