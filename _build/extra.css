@@ -22,3 +22,10 @@ td a{color:var(--ink)}
 .tag{top:auto;bottom:.6rem}
 .grid-3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.grid-3{grid-template-columns:1fr}.grid-3 .card{grid-template-columns:130px 1fr;grid-template-rows:auto}.grid-3 .card .ph{aspect-ratio:1}.grid-3 .card .bd{align-content:center}}
+.signup{background:var(--sheet);border-top:1px solid var(--line);padding:2.5rem 0}
+.signup-in{display:grid;gap:1.5rem;align-items:center}
+@media(min-width:800px){.signup-in{grid-template-columns:1fr 1fr}}
+.signup .kicker{color:var(--cran-text);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;margin:0}
+.signup h2{margin:.2rem 0 .5rem}
+.signup p{margin:0;color:var(--muted)}
+.signup-form{min-height:120px}

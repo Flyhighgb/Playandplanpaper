@@ -45,7 +45,7 @@ HUBS = {
         meta="Printable planners and organisers: UK budget spreadsheet, undated budget planner, ADHD-friendly planner, chore and reward charts, Christmas planner and drone pilot logbook."),
 }
 
-CSS_VER = "1"
+CSS_VER = "2"
 
 
 def head(title, desc, path, og_img="img/og.jpg", og_type="website", schema=None):
@@ -75,7 +75,8 @@ def head(title, desc, path, og_img="img/og.jpg", og_type="website", schema=None)
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="/style.css?v={CSS_VER}">
-{s}</head>
+{s}<script>(function(w,d,e,u,f,l,n){{w[f]=w[f]||function(){{(w[f].q=w[f].q||[]).push(arguments);}},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);}})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account','2775036');</script>
+</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="top-strip"><div class="wrap"><strong>Instant download</strong> · print at home in A4 or US Letter · <strong>25% off Christmas</strong> until 24 Nov</div></div>
@@ -93,6 +94,12 @@ def head(title, desc, path, og_img="img/og.jpg", og_type="website", schema=None)
 
 
 FOOT = f"""</main>
+<section class="signup" aria-labelledby="signup-h">
+  <div class="wrap signup-in">
+    <div class="signup-copy"><p class="kicker">Free printable</p><h2 id="signup-h">Get a free Christmas Emoji Game</h2><p>24 emoji puzzles to print tonight, plus new games before each holiday. No spam, unsubscribe anytime.</p></div>
+    <div class="signup-form"><div class="ml-embedded" data-form="AeThT6"></div></div>
+  </div>
+</section>
 <footer class="site-f">
   <div class="wrap">
     <div class="stack" style="gap:.6rem"><a class="brand" href="/"><img src="/img/mark.png" alt="" width="40" height="40" loading="lazy"><span class="wm" style="color:var(--on-band)">Play &amp; Plan<small style="color:var(--honey)">PAPER</small></span></a><p>Printable games and planners, designed in Manchester, England.</p><span class="mail">hello@playandplanpaper.com</span></div>
