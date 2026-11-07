@@ -37,11 +37,11 @@ HUBS = {
         chips=[("all", "All"), ("adults", "For adults"), ("family", "Family"), ("kids", "Kids"), ("office", "Office party"), ("bundle", "Bundles")]),
     "party": dict(path="party-games", nav="Party games", h1="Printable Party Games",
         title="Printable Party Games for New Year, Valentine's, Showers & Hen Dos",
-        lede="Games for every party after Christmas: date nights for two, a family escape room, New Year's Eve, Valentine's and Galentine's, Easter, baby showers, bridal showers and hen dos.",
-        meta="Printable party games for New Year's Eve, Valentine's, Easter, baby showers, bridal showers and hen parties. Instant download in A4 and US Letter."),
+        lede="Games for every party after Christmas: a New Year's Eve time capsule, Burns Night, date nights for two, a family escape room, Valentine's and Galentine's, birthdays, retirements, Easter, baby showers, bridal showers, hen dos and a kids' wedding activity pack.",
+        meta="Printable party games for New Year's Eve, Burns Night, Valentine's, birthdays, retirements, Easter, baby showers, bridal showers and hen parties. Instant download in A4 and US Letter."),
     "planners": dict(path="planners", nav="Planners", h1="Printable Planners & Organisers",
         title="Printable Planners: Budget, ADHD, Chore Charts & Drone Logbook",
-        lede="Calm, simple pages that make home life easier: a UK budget spreadsheet for Google Sheets and Excel, an undated budget planner, an ADHD-friendly planner, chore charts for kids, a Christmas planner and a drone pilot logbook.",
+        lede="Calm, simple pages that make home life easier: a large print activity book for seniors, a UK budget spreadsheet for Google Sheets and Excel, an undated budget planner, an ADHD-friendly planner, chore charts for kids, a Christmas planner and a drone pilot logbook.",
         meta="Printable planners and organisers: UK budget spreadsheet, undated budget planner, ADHD-friendly planner, chore and reward charts, Christmas planner and drone pilot logbook."),
 }
 
@@ -223,8 +223,8 @@ def build_home():
 <div class="ribbon"><div class="wrap"><span><span class="num" id="days">–</span> days until Christmas</span><span>Nothing to post, nothing to wait for.</span><a href="/p/ultimate-christmas-games-bundle/">See the Ultimate Bundle →</a></div></div>
 <section style="padding-bottom:0">
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Christmas emoji games, a kids' escape room to save Santa's sleigh, and a low-overwhelm cleaning planner.</p></div>
-    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["christmas-emoji-games", "christmas-escape-room", "adhd-cleaning-planner"])}</div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>Quick-fire Christmas games, a Burns Night pack, birthday and retirement games, and a large print activity book.</p></div>
+    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["christmas-guess-the-price", "beat-the-minute-christmas-games", "gift-exchange-dice-game", "burns-night-party-pack", "birthday-party-games", "large-print-activity-book"])}</div>
   </div>
 </section>
 <section>
@@ -233,12 +233,14 @@ def build_home():
     <div class="occ">
       <a href="/christmas-games/"><b>Christmas games</b><span>Quizzes, bingo, charades, hunts</span><span class="when">Now – 25 Dec</span></a>
       <a href="/p/new-years-eve-games/"><b>New Year's Eve</b><span>Games for the countdown</span><span class="when">31 Dec</span></a>
+      <a href="/p/burns-night-party-pack/"><b>Burns Night</b><span>Toasts, quiz, Scots bingo, menu</span><span class="when">25 Jan</span></a>
       <a href="/p/valentines-games/"><b>Valentine's &amp; Galentine's</b><span>Couples quiz, party games</span><span class="when">14 Feb</span></a>
       <a href="/p/secret-santa-kit/"><b>Secret Santa</b><span>Questionnaires, name draw, swap games</span><span class="when">Now – Dec</span></a>
       <a href="/p/christmas-eve-box-kit/"><b>Christmas Eve box</b><span>Magic key, labels, tickets</span><span class="when">24 Dec</span></a>
       <a href="/p/date-night-murder-mystery/"><b>Date night for two</b><span>Murder mystery and couples games</span><span class="when">14 Feb</span></a>
       <a href="/p/christmas-escape-room/"><b>Christmas escape room</b><span>Save Santa's sleigh, ages 6+</span><span class="when">Now – 25 Dec</span></a>
       <a href="/p/escape-room-kids/"><b>Family escape room</b><span>Puzzles for ages 8+</span><span class="when">All year</span></a>
+      <a href="/p/birthday-party-games/"><b>Birthdays &amp; retirements</b><span>Quizzes, bingo, would you rather</span><span class="when">All year</span></a>
       <a href="/party-games/"><b>Showers &amp; hen dos</b><span>Baby shower, bridal shower, hen party</span><span class="when">All year</span></a>
       <a href="/planners/"><b>Planners</b><span>ADHD cleaning, UK budget spreadsheet, chore charts</span><span class="when">New year, new plan</span></a>
       <a href="/p/drone-pilot-logbook/"><b>Drone pilots</b><span>Logbook + flight tracker spreadsheet</span><span class="when">UK, EU &amp; US</span></a>
