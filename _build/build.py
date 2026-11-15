@@ -10,14 +10,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 B = ROOT / "_build"
 SITE = "https://playandplanpaper.com"
-SHOP = "https://www.etsy.com/shop/PlayAndPlanPaper"
+SHOP = "https://playandplanpaper.etsy.com/"
 PINTEREST = "https://www.pinterest.com/playandplanpaper/"
 TIKTOK = "https://www.tiktok.com/@play.plan.paper.p"
 TODAY = datetime.date.today().isoformat()
 
 PRODUCTS = json.loads((B / "products.json").read_text())
 BY = {p["slug"]: p for p in PRODUCTS}
-from guides import GUIDES  # noqa: E402
+from guides import GUIDES as _G  # noqa: E402
+from guides_xmas import XMAS_GUIDES  # noqa: E402
+GUIDES = XMAS_GUIDES + _G
 
 e = html.escape
 
@@ -279,7 +281,7 @@ def build_home():
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head"><div class="stack"><p class="eyebrow">Ideas &amp; guides</p><h2>Party ideas from the blog</h2></div><a class="btn btn-sec btn-sm" href="/ideas/">All ideas →</a></div>
-    <div class="posts">{"".join(post_card(g) for g in GUIDES)}</div>
+    <div class="posts">{"".join(post_card(g) for g in GUIDES[:6])}</div>
   </div>
 </section>
 <section class="band" style="padding-block:2.5rem">
