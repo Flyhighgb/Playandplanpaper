@@ -13,6 +13,7 @@ SITE = "https://playandplanpaper.com"
 SHOP = "https://playandplanpaper.etsy.com/"
 PINTEREST = "https://www.pinterest.com/playandplanpaper/"
 TIKTOK = "https://www.tiktok.com/@play.plan.paper.p"
+INDEXNOW_KEY = "385b15db360207311c2e9e67f6a3d7b3"
 TODAY = datetime.date.today().isoformat()
 
 PRODUCTS = json.loads((B / "products.json").read_text())
@@ -81,7 +82,7 @@ def head(title, desc, path, og_img="img/og.jpg", og_type="website", schema=None)
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="top-strip"><div class="wrap"><strong>Instant download</strong> · print at home in A4 or US Letter · <strong>25% off Christmas</strong> until 24 Nov</div></div>
+<div class="top-strip"><div class="wrap"><strong>Instant download</strong> · print at home in A4 or US Letter · <strong>25% off Christmas</strong> until 1 Dec</div></div>
 <header class="site-h">
   <div class="wrap">
     <a class="brand" href="/" aria-label="Play and Plan Paper home"><img src="/img/mark.png" alt="" width="40" height="40"><span class="wm">Play &amp; Plan<small>PAPER</small></span></a>
@@ -314,7 +315,8 @@ def build_hub(key):
     h = HUBS[key]
     items = [p for p in PRODUCTS if p["cat"] == key]
     cr, cs = crumbs([(h["h1"], None)])
-    schema = [cs]
+    schema = [cs, {"@context": "https://schema.org", "@type": "ItemList", "name": h["h1"], "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/p/{p['slug']}/", "name": p["name"]} for i, p in enumerate(items)]}]
     chips = ""
     if h.get("chips"):
         chips = '<div class="chips" role="group" aria-label="Filter">' + "".join(
@@ -464,6 +466,21 @@ def build_seo_files():
     write("sitemap.xml", xml)
     write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n")
     write("_headers", "/img/*\n  Cache-Control: public, max-age=2592000\n/style.css\n  Cache-Control: public, max-age=604800\n/site.js\n  Cache-Control: public, max-age=604800\n/_build/*\n  X-Robots-Tag: noindex\n")
+    write(f"{INDEXNOW_KEY}.txt", INDEXNOW_KEY + "\n")
+    lines = ["# Play & Plan Paper", "",
+             "> Printable party games and planners from a small shop in Manchester, England. Every product is an instant PDF download in A4 and US Letter, with full-colour and ink-saver versions, sold through our Etsy shop.", "",
+             "Key facts:",
+             "- Shop: " + SHOP + " (Etsy handles payment and the instant download; nothing is posted)",
+             "- Sizes: A4 (UK spellings) and US Letter (US spellings); ink-saver version of every page",
+             "- Licence: personal use, print as many copies as your own household, party or classroom needs",
+             "- Best value Christmas pack: Ultimate Christmas Games Bundle (30+ games): " + SITE + "/p/ultimate-christmas-games-bundle/", "",
+             "## Guides (free game ideas, answers and printable tips)"]
+    lines += [f"- [{g['title']}]({SITE}/ideas/{g['slug']}/): {g['answer']}" for g in GUIDES]
+    for k, h in HUBS.items():
+        lines += ["", f"## {h['h1']}", f"{h['lede']}", f"- [See all: {h['h1']}]({SITE}/{h['path']}/)"]
+        lines += [f"- [{p['name']}]({SITE}/p/{p['slug']}/): {p['short']}" for p in PRODUCTS if p["cat"] == k]
+    lines += ["", "## About", f"- [About Play & Plan Paper]({SITE}/about/)", "- Contact: hello@playandplanpaper.com", ""]
+    write("llms.txt", "\n".join(lines))
     write("_redirects", "/shop " + SHOP + " 302\n/etsy " + SHOP + " 302\n/pinterest " + PINTEREST + " 302\n/tiktok " + TIKTOK + " 302\n")
 
 
