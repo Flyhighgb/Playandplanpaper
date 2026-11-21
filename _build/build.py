@@ -20,7 +20,8 @@ PRODUCTS = json.loads((B / "products.json").read_text())
 BY = {p["slug"]: p for p in PRODUCTS}
 from guides import GUIDES as _G  # noqa: E402
 from guides_xmas import XMAS_GUIDES  # noqa: E402
-GUIDES = XMAS_GUIDES + _G
+from guides_xmas2 import XMAS_GUIDES2  # noqa: E402
+GUIDES = XMAS_GUIDES2 + XMAS_GUIDES + _G
 
 e = html.escape
 
@@ -48,7 +49,7 @@ HUBS = {
         meta="Printable planners and organisers: UK budget spreadsheet, undated budget planner, ADHD-friendly planner, chore and reward charts, Christmas planner and drone pilot logbook."),
 }
 
-CSS_VER = "2"
+CSS_VER = "3"
 
 
 def head(title, desc, path, og_img="img/og.jpg", og_type="website", schema=None):
@@ -107,7 +108,7 @@ FOOT = f"""</main>
   <div class="wrap">
     <div class="stack" style="gap:.6rem"><a class="brand" href="/"><img src="/img/mark.png" alt="" width="40" height="40" loading="lazy"><span class="wm" style="color:var(--on-band)">Play &amp; Plan<small style="color:var(--honey)">PAPER</small></span></a><p>Printable games and planners, designed in Manchester, England.</p><span class="mail">hello@playandplanpaper.com</span></div>
     <div><h4>Shop</h4><a href="/christmas-games/">Christmas games</a><a href="/party-games/">Party games</a><a href="/planners/">Planners</a><a href="/p/drone-pilot-logbook/">Drone logbook</a><a href="{SHOP}">All on Etsy</a></div>
-    <div><h4>Ideas</h4><a href="/ideas/printable-christmas-games-for-adults/">Christmas games for adults</a><a href="/ideas/christmas-games-for-kids/">Christmas games for kids</a><a href="/ideas/">All guides</a><a href="/about/">About us</a></div>
+    <div><h4>Ideas</h4><a href="/ideas/printable-christmas-games-for-adults/">Christmas games for adults</a><a href="/ideas/christmas-games-for-kids/">Christmas games for kids</a><a href="/ideas/christmas-games-for-large-groups/">Games for large groups</a><a href="/ideas/">All guides</a><a href="/about/">About us</a></div>
     <div><h4>Follow</h4><a href="{PINTEREST}" rel="noopener">Pinterest</a><a href="{TIKTOK}" rel="noopener">TikTok</a><a href="{SHOP}" rel="noopener">Etsy shop</a></div>
     <p class="legal">© {datetime.date.today().year} Play &amp; Plan Paper. Printables are for personal use. Orders, payments and downloads are handled securely by Etsy.</p>
   </div>
@@ -134,7 +135,7 @@ def card(p, tag=None):
     tag = tag or p.get("tag")
     t = f'<span class="tag">{e(tag)}</span>' if tag else ""
     return (f'<article class="card" data-f="{" ".join(p.get("filters", []))}"><div class="ph">'
-            f'<a href="/p/{p["slug"]}/" tabindex="-1" aria-hidden="true"><img src="/img/p/{p["slug"]}-1.jpg" alt="{e(p["name"])} printable" loading="lazy" width="900" height="900"></a>{t}</div>'
+            f'<a href="/p/{p["slug"]}/" tabindex="-1" aria-hidden="true"><img src="/img/t/{p["slug"]}-1.webp" alt="{e(p["name"])} printable" loading="lazy" decoding="async" width="480" height="480"></a>{t}</div>'
             f'<div class="bd"><h3><a href="/p/{p["slug"]}/">{e(p["name"])}</a></h3><p class="meta">{e(p["short"])}</p>'
             f'<div class="row"><span class="price-note">Instant download</span><a class="buy" href="/p/{p["slug"]}/">View →</a></div></div></article>')
 
@@ -203,8 +204,9 @@ XMAS_FAQ = [
 
 def build_home():
     schema = [ORG, SITE_SCHEMA]
-    best = ["ultimate-christmas-games-bundle", "christmas-party-games", "christmas-family-quiz", "christmas-bingo"]
-    tags = {"ultimate-christmas-games-bundle": "Best value"}
+    best = ["ultimate-christmas-games-bundle", "christmas-party-games", "christmas-family-quiz", "christmas-bingo",
+            "christmas-emoji-games", "christmas-escape-room", "secret-santa-kit", "christmas-guess-the-price"]
+    tags = {"ultimate-christmas-games-bundle": "Best value", "christmas-party-games": "Bestseller"}
     body = f"""
 <section class="hero">
   <div class="wrap">
@@ -226,8 +228,8 @@ def build_home():
 <div class="ribbon"><div class="wrap"><span><span class="num" id="days">–</span> days until Christmas</span><span>Nothing to post, nothing to wait for.</span><a href="/p/ultimate-christmas-games-bundle/">See the Ultimate Bundle →</a></div></div>
 <section style="padding-bottom:0">
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>A Christmas cookie swap kit, an ugly jumper party, a giant word search, Thanksgiving games and the 2027 calendar and planner.</p></div>
-    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["christmas-cookie-exchange-kit", "ugly-christmas-sweater-party-kit", "giant-christmas-word-search", "thanksgiving-games-bundle", "2027-illustrated-calendar", "2027-planner"])}</div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Most loved this season</p><h2>Christmas favourites</h2></div><a class="btn btn-sec btn-sm" href="/christmas-games/">See all Christmas →</a></div>
+    <div class="grid">{"".join(card(BY[s], tags.get(s)) for s in best)}</div>
   </div>
 </section>
 <section>
@@ -246,14 +248,13 @@ def build_home():
       <a href="/p/birthday-party-games/"><b>Birthdays &amp; retirements</b><span>Quizzes, bingo, would you rather</span><span class="when">All year</span></a>
       <a href="/party-games/"><b>Showers &amp; hen dos</b><span>Baby shower, bridal shower, hen party</span><span class="when">All year</span></a>
       <a href="/planners/"><b>Planners</b><span>ADHD cleaning, UK budget spreadsheet, chore charts</span><span class="when">New year, new plan</span></a>
-      <a href="/p/drone-pilot-logbook/"><b>Drone pilots</b><span>Logbook + flight tracker spreadsheet</span><span class="when">UK, EU &amp; US</span></a>
     </div>
   </div>
 </section>
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">Most loved this season</p><h2>Christmas favourites</h2></div><a class="btn btn-sec btn-sm" href="/christmas-games/">See all Christmas →</a></div>
-    <div class="grid">{"".join(card(BY[s], tags.get(s)) for s in best)}</div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">Just added</p><h2>New in the shop</h2></div><p>A Christmas cookie swap kit, an ugly jumper party, a giant word search, a New Year time capsule and the 2027 calendar and planner.</p></div>
+    <div class="grid grid-3">{"".join(card(BY[s]) for s in ["christmas-cookie-exchange-kit", "ugly-christmas-sweater-party-kit", "giant-christmas-word-search", "nye-time-capsule", "2027-illustrated-calendar", "2027-planner"])}</div>
   </div>
 </section>
 <section class="band">
@@ -307,7 +308,7 @@ def build_home():
 
 
 def post_card(g):
-    return (f'<a class="post" href="/ideas/{g["slug"]}/"><div class="ph"><img src="/img/p/{g["image"]}" alt="" loading="lazy" width="900" height="900"></div>'
+    return (f'<a class="post" href="/ideas/{g["slug"]}/"><div class="ph"><img src="/img/t/{g["image"][:-4]}.webp" alt="" loading="lazy" decoding="async" width="480" height="480"></div>'
             f'<span class="cat">{e(g["cat"])}</span><h3>{e(g["title"])}</h3><p>{e(g["teaser"])}</p></a>')
 
 
@@ -359,6 +360,33 @@ def related(p):
     return same[:4]
 
 
+MORE = {"christmas": "More Christmas games", "party": "More party games", "planners": "More planners"}
+
+
+def product_title(p):
+    n = p["name"]
+    t = f"{n} Printable | Instant PDF Download"
+    if len(t) > 62:
+        t = f"{n} Printable | Play & Plan Paper"
+    if len(t) > 62:
+        t = f"{n} | Printable PDF"
+    return t
+
+
+def bundle_nudge(p):
+    if p["cat"] != "christmas" or "bundle" in p.get("filters", []):
+        return ""
+    if p["slug"] not in BUNDLE_PARTS:
+        return ""
+    b = BY["ultimate-christmas-games-bundle"]
+    return (f'<a class="nudge" href="/p/{b["slug"]}/"><img src="/img/t/{b["slug"]}-1.webp" alt="" width="72" height="72" loading="lazy">'
+            f'<span><b>Hosting more than one game?</b> This pack is also in the Ultimate Christmas Games Bundle: six packs, 30+ games, for much less than buying them one by one. <u>See the bundle →</u></span></a>')
+
+
+BUNDLE_PARTS = {"christmas-party-games", "christmas-family-quiz", "christmas-bingo", "christmas-scavenger-hunt",
+                "office-christmas-party", "christmas-dinner-table"}
+
+
 def build_product(p):
     hub = HUBS[p["cat"]]
     cr, cs = crumbs([(hub["h1"], hub["path"] + "/"), (p["name"], None)])
@@ -384,19 +412,21 @@ def build_product(p):
       <a class="btn btn-pri" href="{p['etsy']}" rel="noopener">See price &amp; buy on Etsy</a>
       <dl class="spec"><dt>Format</dt><dd>{e(p.get("format", "Digital PDF download"))}</dd><dt>Sizes</dt><dd>{e(p.get("sizes", "A4 and US Letter"))}</dd><dt>Versions</dt><dd>{e(p.get("versions", "Full colour + ink-saver"))}</dd><dt>Delivery</dt><dd>Instant, straight after checkout</dd></dl>
       <p class="assure">{e(p.get("assure", "Secure checkout through Etsy. Print as many copies as you need for your own household."))}</p>
+      {bundle_nudge(p)}
     </div>
   </div>
   <div class="desc">{desc_html(p['description'].split(chr(10), 1)[1] if chr(10) in p['description'] else '')}</div>
 </div>
 <section>
   <div class="wrap">
-    <div class="sec-head"><div class="stack"><p class="eyebrow">You might also like</p><h2>More {e(hub['nav'].lower())}</h2></div><a class="btn btn-sec btn-sm" href="/{hub['path']}/">See all →</a></div>
+    <div class="sec-head"><div class="stack"><p class="eyebrow">You might also like</p><h2>{e(MORE[p['cat']])}</h2></div><a class="btn btn-sec btn-sm" href="/{hub['path']}/">See all →</a></div>
     <div class="grid">{"".join(card(x) for x in related(p))}</div>
   </div>
 </section>
+<div class="buybar"><div class="wrap"><span><b>{e(p['name'])}</b><small>Instant download · A4 + US Letter</small></span><a class="btn btn-pri btn-sm" href="{p['etsy']}" rel="noopener">Buy on Etsy</a></div></div>
 """
     write(f"p/{p['slug']}/index.html",
-          head(f"{p['name']} Printable | Play & Plan Paper", meta, f"p/{p['slug']}/", og_img=imgs[0][1:], og_type="product", schema=[cs]) + body + FOOT)
+          head(product_title(p), meta, f"p/{p['slug']}/", og_img=imgs[0][1:], og_type="product", schema=[cs]) + body + FOOT)
 
 
 def build_guides():
@@ -460,9 +490,9 @@ def build_404():
 
 
 def build_seo_files():
-    urls = ["", "christmas-games/", "party-games/", "planners/", "ideas/", "about/"] + [f"p/{p['slug']}/" for p in PRODUCTS] + [f"ideas/{g['slug']}/" for g in GUIDES]
+    urls = [(u, TODAY) for u in ["", "christmas-games/", "party-games/", "planners/", "ideas/", "about/"] + [f"p/{p['slug']}/" for p in PRODUCTS]] + [(f"ideas/{g['slug']}/", g["date"]) for g in GUIDES]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
-        f"  <url><loc>{SITE}/{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n"
+        f"  <url><loc>{SITE}/{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls) + "</urlset>\n"
     write("sitemap.xml", xml)
     write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /_build/\n\nSitemap: {SITE}/sitemap.xml\n")
     write("_headers", "/img/*\n  Cache-Control: public, max-age=2592000\n/style.css\n  Cache-Control: public, max-age=604800\n/site.js\n  Cache-Control: public, max-age=604800\n/_build/*\n  X-Robots-Tag: noindex\n")
@@ -484,6 +514,17 @@ def build_seo_files():
     write("_redirects", "/shop " + SHOP + " 302\n/etsy " + SHOP + " 302\n/pinterest " + PINTEREST + " 302\n/tiktok " + TIKTOK + " 302\n")
 
 
+def make_thumbs():
+    from PIL import Image
+    out = ROOT / "img" / "t"
+    out.mkdir(exist_ok=True)
+    for src in sorted(list((ROOT / "img" / "p").glob("*-1.jpg")) + list((ROOT / "img" / "p").glob("ideas-*.jpg"))):
+        dst = out / (src.stem + ".webp")
+        if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+            continue
+        Image.open(src).convert("RGB").resize((480, 480), Image.LANCZOS).save(dst, "WEBP", quality=80, method=6)
+
+
 def build_assets():
     css = (B / "base.css").read_text() + (B / "extra.css").read_text()
     write("style.css", css)
@@ -495,6 +536,7 @@ if __name__ == "__main__":
     build_home()
     for k in HUBS:
         build_hub(k)
+    make_thumbs()
     for p in PRODUCTS:
         build_product(p)
     build_guides()
